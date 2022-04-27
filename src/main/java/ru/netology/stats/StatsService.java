@@ -21,7 +21,7 @@ public class StatsService {
             if (sale >= sales[maxMonth]) {
                 maxMonth = month;
             }
-            month = month + 1;
+            month++;
         }
         return maxMonth + 1;
     }
@@ -33,9 +33,35 @@ public class StatsService {
             if (sale <= sales[minMonth]) {
                 minMonth = month;
             }
-            month = month + 1;
+            month++;
         }
         return minMonth + 1;
+    }
+
+    public int getBelowThanAverageMonthCount(int[] sales) {
+        int average = findAverage(sales);
+        int count = 0;
+
+        for (int sale : sales) {
+            if (sale < average) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public int getMoreThanAverageMonthCount(int[] sales) {
+        int average = findAverage(sales);
+        int count = 0;
+
+        for (int sale : sales) {
+            if (sale > average) {
+                count++;
+            }
+        }
+
+        return count;
     }
 
 }
